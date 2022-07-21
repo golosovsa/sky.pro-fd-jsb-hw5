@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <title>Task 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .html,
+        .body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .body {
+            display: flex;
+            flex-flow: column nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading {
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            background-color: #4158D0;
+            background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+            animation: rotator 3s linear 0s infinite normal none;
+            display: flex;
+            flex-flow: column nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading__inner {
+            position: relative;
+        }
+
+        .loading__overlapper {
+            width: 160px;
+            height: 160px;
+            border-radius: 80px;
+            margin: 20px;
+            background-color: #fff;
+        }
+
+        .loading__text {
+            position: absolute;
+            left: 63px;
+            top: 90px;
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            animation: splash 2s ease-out;
+        }
+
+        @keyframes rotator {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes splash {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1.;
+            }
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="loading__inner">
+        <div class="loading">
+            <div class="loading__overlapper"></div>
+        </div>
+        <p class="loading__text">LOADING</p>
+    </div>
+
+    <script>
+        const IMG_URI = "https://images.unsplash.com/photo-1658311106879-4eb59da74d11"
+
+        const body = document.querySelector(".body")
+
+        function imageLoadHandler() {
+            body.firstElementChild.remove();
+            body.appendChild(this);
+        }
+
+        function createImageNode() {
+            const img = document.createElement("IMG");
+            img.addEventListener("load", imageLoadHandler);
+            img.classList.add("img");
+            img.src = IMG_URI;
+            return img;
+        }
+
+        const img = createImageNode();
+    </script>
+
+</body>
+</html>
